@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamsList } from '../../App';
+import { MyContext } from './StyleContext';
 
 interface HomeScreenProps{
     navigation: StackNavigationProp<RootStackParamsList, 'Home'>
@@ -21,6 +22,9 @@ interface Items {
 
 const Home = ({navigation}:HomeScreenProps) => {
 
+  // use context example
+  const value = useContext(MyContext)
+
   // typescript state decleration
   const [counter,setCounter] = useState<number>(0);
   const [name,setName] = useState<string>('');
@@ -31,7 +35,7 @@ const Home = ({navigation}:HomeScreenProps) => {
   
   return (
     <View>
-      <Text>Home</Text>
+      <Text style={{color:value.color,backgroundColor:value.bg}}>Home</Text>
       <Text style={{margin:20,backgroundColor:'lightgrey',padding:10,textAlign:'center'}} onPress={()=>{
         navigation.navigate("About")
       }}>Go to About</Text>
